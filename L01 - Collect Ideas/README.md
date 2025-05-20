@@ -32,7 +32,8 @@ Ce workflow s’exécute via un **webhook HTTP POST** et attend un tableau JSON 
   },
   ...
 ]
-🔧 Configuration requise
+
+## 🔧 Configuration requise
 Avant d’activer le workflow, configure les éléments suivants :
 
 1. 🔑 OpenAI
@@ -47,7 +48,7 @@ Le nom du fichier Google Sheet (ex. LinkedIn Ideas)
 
 Le nom de l’onglet cible (ex. Feuille 1)
 
-🧠 Logique IA utilisée
+## 🧠 Logique IA utilisée
 Chaque article est envoyé à un LLM avec cette consigne :
 
 "Cet article est-il pertinent pour être partagé sur LinkedIn par un profil tech senior (Java / DevOps / Agile / Freelance) ?
@@ -67,7 +68,7 @@ Les articles jugés pertinents sont ajoutés au Google Sheet avec :
 
 🏷️ La source
 
-🚀 Comment tester
+### 🚀 Comment tester
 Lance manuellement le workflow
 
 Envoie une requête POST au webhook avec une liste d’articles en JSON
@@ -77,7 +78,7 @@ Vérifie le contenu ajouté dans Google Sheets
 📡 Intégration avec L00 - Fetch Articles
 Ce workflow est conçu pour être déclenché automatiquement depuis le workflow L00 - Fetch Articles, qui collecte les flux RSS tech.
 
-🧱 Personnalisation possible
+### 🧱 Personnalisation possible
 Modifier la consigne GPT pour ajuster le ton ou les critères de pertinence
 
 Ajouter une notation de pertinence (score 1 à 5)
@@ -86,11 +87,11 @@ Enrichir le résumé avec des hashtags ou CTA
 
 Publier automatiquement sur LinkedIn via Zapier ou un autre workflow
 
-📁 Fichier d’export n8n
+## 📁 Fichier d’export n8n
 Tu peux importer le fichier suivant dans n8n pour tester ou cloner ce workflow :
 
 L01 - Collect Ideas.json
 
-📬 Questions / Suggestions
+## 📬 Questions / Suggestions
 Tu veux adapter ce workflow à un autre usage (veille métier, Notion, newsletters) ?
 → Ouvre une issue ou contacte-moi sur LinkedIn : https://www.linkedin.com/in/patrickelard/
