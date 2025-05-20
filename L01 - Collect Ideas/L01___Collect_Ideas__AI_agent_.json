@@ -1,0 +1,624 @@
+{
+  "name": "L01 - Collect Ideas (AI agent)",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    prompt: {\n      system: \"You are an experienced technology leader with background in software engineering and agile practices.\\nCreate engaging LinkedIn post that resonate with audiences in the engineering and tech decision-making sectors.### Target Audiences:\\n1. Software engineers, developers, and backend professionals.\\n2. Decision-makers in tech sectors, including startups and large IT organizations.\"\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        740,
+        0
+      ],
+      "id": "ffab3735-3dc2-4de8-99b9-f3c0e45fc55b",
+      "name": "Code",
+      "notesInFlow": true,
+      "notes": "prompt"
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        400,
+        0
+      ],
+      "id": "eb90e803-a4a4-43f8-992a-a26f8ea51ab8",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Can you tell me if the article at {{ $('Loop Over Items').item.json.url }} is relevant to post on LinkedIn? \n\nthen, create a 250 word summary of the article.",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "={{ $('Code').item.json.prompt.system }}\nYou are a helpful assistant in summarizing and identifying best articles to post on LinkedIn. \nOutput the results as valid json:\n{\n\t\t\"summary\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"related\": {\n\t\t\t\"type\": \"string\" [\"yes\",\"no\"]\n\t\t}\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        880,
+        0
+      ],
+      "id": "3f485cbd-e286-489e-a359-b531c5153c35",
+      "name": "AI Agent",
+      "notesInFlow": true,
+      "onError": "continueErrorOutput",
+      "notes": "Qualify articles"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"properties\": {\n\t\t\"summary\": \"string\",\n\t\t\"related\": \"string\"\n\t}\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1160,
+        240
+      ],
+      "id": "f8cb4aa5-5786-4905-afb4-f64bf613febf",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": "=meta-llama/llama-3.1-8b-instruct",
+        "options": {
+          "maxTokens": 1000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        240
+      ],
+      "id": "e4e9a841-0766-4752-9a29-bf40dae01267",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "EKp8THsaGGu54fhI",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Loop Over Items').item.json.url }}",
+        "optimizeResponse": true,
+        "responseType": "text",
+        "truncateResponse": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        240
+      ],
+      "id": "ea49b23f-abcd-41d5-927b-8ae1f4639e60",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1KZPVtbwbYfXeD73XZSfXT1fH39DjCs6UfvSyS1rYoAY",
+          "mode": "list",
+          "cachedResultName": "[Botopod] Automatisation",
+          "cachedResultUrl": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 809171297,
+          "mode": "list",
+          "cachedResultName": "Sujets",
+          "cachedResultUrl": ""
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Sujet": "={{ $('Loop Over Items').item.json.title }}",
+            "Url de recherche": "={{ $('Loop Over Items').item.json.url }}",
+            "Commentaires": "=Source n8n.",
+            "Object ID": "={{ $('Loop Over Items').item.json.id }}",
+            "Horodateur": "={{ $('Loop Over Items').item.json.date }}",
+            "Résumé": "={{ $json.output.properties.summary }}",
+            "Traité": "FALSE",
+            "Langue de rédaction": "Français",
+            "Type de post": "Réseaux sociaux",
+            "Ton du post": "Conversationnel",
+            "Style de post": "FAB (Features, Advantages, Benefits)",
+            "Générer une image": "TRUE"
+          },
+          "matchingColumns": [
+            "Object ID"
+          ],
+          "schema": [
+            {
+              "id": "Horodateur",
+              "displayName": "Horodateur",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sujet",
+              "displayName": "Sujet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Style de post",
+              "displayName": "Style de post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ton du post",
+              "displayName": "Ton du post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Langue de rédaction",
+              "displayName": "Langue de rédaction",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Url de recherche",
+              "displayName": "Url de recherche",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Résumé",
+              "displayName": "Résumé",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Type de post",
+              "displayName": "Type de post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Générer une image",
+              "displayName": "Générer une image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Traité",
+              "displayName": "Traité",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Etape",
+              "displayName": "Etape",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Commentaires",
+              "displayName": "Commentaires",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Object ID",
+              "displayName": "Object ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1380,
+        0
+      ],
+      "id": "7707bb74-cc03-4daa-80d2-e9b73009a134",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleApi": {
+          "id": "id",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        580,
+        0
+      ],
+      "id": "c93b3451-0658-4453-aaab-ccf5ff248c4b",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "90a6a9a6-6eb6-4c0d-8fef-787c30d4028b",
+              "leftValue": "={{ $json.output.properties.related }}",
+              "rightValue": "yes",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        0
+      ],
+      "id": "20b7e3d7-0579-43ac-9101-707e13c87377",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "## Select articles and generate summaries",
+        "height": 440,
+        "width": 840,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        520,
+        -60
+      ],
+      "id": "4bcc98f3-3981-47bf-9abb-f54e7b873eb1",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "date",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        260,
+        0
+      ],
+      "id": "f3b77d1b-b771-46a5-948d-0f8d4419ed44",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "3c0180b6-66e5-468a-99dc-53f1d54b5ba9",
+        "options": {
+          "rawBody": false
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -40,
+        140
+      ],
+      "id": "0e9c6aa1-ebd1-4a54-b7b8-8284251b45a3",
+      "name": "Webhook",
+      "webhookId": "3c0180b6-66e5-468a-99dc-53f1d54b5ba9"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "body.articles",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        120,
+        0
+      ],
+      "id": "6086c56b-cc14-4e0e-80bd-e0128a570049",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{ \n  \"body\":\n    {\n      \"articles\": [\n      {\n      \"title\": \n      \"I tried the tech that makes hands-free smart locks actually work\",\n      \"url\": \n      \"https://www.theverge.com/smart-home/603957/uwb-hands-free-unlocking-schlage-aliro-apple-samsung-hands-on\",\n      \"date\": \n      \"2025-02-02T14:00:00.000Z\",\n      \"id\": \n      \"https://www.theverge.com/?p=603957\"\n      }\n    ]\n    }\n}"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -40,
+        -20
+      ],
+      "id": "b92eef7d-5f2a-4e4a-a693-d7f012f1156d",
+      "name": "Workflow Input Trigger"
+    },
+    {
+      "parameters": {
+        "content": "## Working models\nanthropic/claude-3.5-sonnet:beta $3/M input tokens\nmeta-llama/llama-3.1-8b-instruct $0.02/M input tokens",
+        "height": 100,
+        "width": 840
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        520,
+        -180
+      ],
+      "id": "7c706e69-a3fa-45c7-be96-e738f42b6a78",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Workflow Input Trigger": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Paris",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 600
+  },
+  "versionId": "1ae3b584-736e-44cd-90e0-7f21265845ff",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cb002d7c605375d7d53ec8fe9b39722a00b93c158d79a0f522f2656a12aee16c"
+  },
+  "id": "IbwOdqCrdx0M2V7x",
+  "tags": [
+    {
+      "createdAt": "2025-01-30T15:02:27.472Z",
+      "updatedAt": "2025-01-30T15:02:27.472Z",
+      "id": "31UqcsuLNY2fNAUA",
+      "name": "botopod"
+    },
+    {
+      "createdAt": "2025-01-31T09:33:28.260Z",
+      "updatedAt": "2025-01-31T09:33:28.260Z",
+      "id": "YNRFMK6mH5Ptia3X",
+      "name": "linkedin"
+    }
+  ]
+}

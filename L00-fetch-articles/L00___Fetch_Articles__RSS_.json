@@ -1,0 +1,581 @@
+{
+  "name": "L00 - Fetch Articles (RSS)",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://feeds.feedburner.com/Baeldung"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -620,
+        -280
+      ],
+      "id": "4b60ce75-7d01-40c1-9374-eed032fae413",
+      "name": "Baeldung",
+      "notesInFlow": true,
+      "notes": "Développement Java & Backend"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://feeds.dzone.com/java"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -280
+      ],
+      "id": "a1ec5571-30ba-4dd2-a132-3e5aa031cd39",
+      "name": "DZone - Java",
+      "notesInFlow": true,
+      "notes": "Développement Java & Backend"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://feeds.dzone.com/devops"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        -280
+      ],
+      "id": "8451a0fa-76bc-42c2-82d5-a94845049352",
+      "name": "DZone - DevOps",
+      "notesInFlow": true,
+      "notes": "Développement Java & Backend"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://www.reddit.com/r/java/.rss"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        -280
+      ],
+      "id": "72af3dde-e2bf-4c16-a7ce-d4f46c71353a",
+      "name": "Reddit - Java",
+      "notesInFlow": true,
+      "notes": "Développement Java & Backend"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://martinfowler.com/feed.atom"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -620,
+        -100
+      ],
+      "id": "01412228-f53c-457c-ae56-8a0bf97e9a4d",
+      "name": "Martin Fowler",
+      "notesInFlow": true,
+      "notes": "Architecture Logicielle & Microservices"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://www.agilealliance.org/feed/"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -100
+      ],
+      "id": "e9b3dba0-9054-45b9-beda-2557e239f6b1",
+      "name": "Agile Alliance",
+      "notesInFlow": true,
+      "notes": "Agilité & Leadership Tech"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://dev.to/feed/tag/freelance"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        -100
+      ],
+      "id": "05d06f22-4a25-4bf3-938c-d992292d3b6c",
+      "name": "Dev.to Freelancing",
+      "notesInFlow": true,
+      "notes": "Freelancing & Entrepreneuriat Tech"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://news.ycombinator.com/rss"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        -100
+      ],
+      "id": "c3dc2250-7352-400a-a21b-d447aa58a8b7",
+      "name": "Hacker News",
+      "notesInFlow": true,
+      "notes": "Outils & Plateformes d’Actualités Tech"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "http://feeds.arstechnica.com/arstechnica/index"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -100
+      ],
+      "id": "65e6b9c7-4d17-4eb0-897f-192c3815be32",
+      "name": "Ars Technica",
+      "notesInFlow": true,
+      "notes": "Outils & Plateformes d’Actualités Tech"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://www.theverge.com/rss/index.xml"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -280
+      ],
+      "id": "74da6e1c-99dd-4039-ba4d-2a52ca1fd79f",
+      "name": "The Verge",
+      "notesInFlow": true,
+      "notes": "Outils & Plateformes d’Actualités Tech"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b134670f-e1e9-4023-aab2-16fab0e169c6",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "ce58da40-cdcb-4238-a812-82fb43836900",
+              "name": "url",
+              "value": "={{ $json.link }}",
+              "type": "string"
+            },
+            {
+              "id": "c9f1521b-7459-495a-98c0-a9cd51365c90",
+              "name": "id",
+              "value": "={{ $json.link }}",
+              "type": "string"
+            },
+            {
+              "id": "c66d2569-7e0f-4793-ba9b-883d50500c27",
+              "name": "date",
+              "value": "={{ $json.isoDate }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        120,
+        -180
+      ],
+      "id": "bc8332d1-8b63-49e6-a73e-40f3c562764b",
+      "name": "Edit Fields",
+      "notesInFlow": true,
+      "notes": "Format article"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "articles",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        280,
+        -180
+      ],
+      "id": "a82e0eaf-463a-456a-9056-309fba885722",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "IbwOdqCrdx0M2V7x",
+          "mode": "list",
+          "cachedResultName": "LinkedIn - Collect Ideas (AI agent)"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [
+            "articles"
+          ],
+          "schema": [
+            {
+              "id": "articles",
+              "displayName": "articles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "array",
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": "={{ $json.body }}",
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        600,
+        -180
+      ],
+      "id": "59361fe9-dbd0-4218-9cf7-24955049a739",
+      "name": "Execute Workflow"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"body\": {\n    \"articles\": {{ $json.articles }}\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        -180
+      ],
+      "id": "764cacef-edbf-4b80-a660-0ae7f8c18fcc",
+      "name": "Edit Fields1",
+      "notesInFlow": true,
+      "notes": "Format body"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://www.tldrnewsletter.com/rss"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        60
+      ],
+      "id": "065006c3-0d79-4455-84ac-f7b945aaf179",
+      "name": "TLDR",
+      "notesInFlow": true,
+      "notes": "News"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://www.fastcompany.com/latest/rss"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        60
+      ],
+      "id": "6527d53b-f19e-47ba-8a39-e000ead15f37",
+      "name": "Fast Company",
+      "notesInFlow": true,
+      "notes": "News"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "The Verge": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baeldung": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DZone - Java": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DZone - DevOps": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reddit - Java": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Martin Fowler": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agile Alliance": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dev.to Freelancing": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hacker News": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ars Technica": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TLDR": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fast Company": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Paris",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 600
+  },
+  "versionId": "97658751-4f8e-4a8b-be9e-1d92c1ef0a6f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cb002d7c605375d7d53ec8fe9b39722a00b93c158d79a0f522f2656a12aee16c"
+  },
+  "id": "0HR83vO1o23ScUyf",
+  "tags": [
+    {
+      "createdAt": "2025-01-30T15:02:27.472Z",
+      "updatedAt": "2025-01-30T15:02:27.472Z",
+      "id": "31UqcsuLNY2fNAUA",
+      "name": "botopod"
+    },
+    {
+      "createdAt": "2025-01-31T09:33:28.260Z",
+      "updatedAt": "2025-01-31T09:33:28.260Z",
+      "id": "YNRFMK6mH5Ptia3X",
+      "name": "linkedin"
+    }
+  ]
+}
