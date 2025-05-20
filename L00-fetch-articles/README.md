@@ -39,18 +39,18 @@ Centraliser et automatiser la veille technologique en récupérant régulièreme
   "pubDate": "2025-05-18T08:12:00.000Z",
   "source": "monblogtech.dev"
 }
-
-Ce format est ensuite utilisé par le workflow L01 - Collect Ideas.
+```
+Ce format est ensuite utilisé par le workflow `L01 - Collect Ideas`.
 
 ## 🧪 Test rapide
 
 Tu peux tester ce workflow manuellement en le déclenchant depuis l’interface n8n et en inspectant les articles en sortie.
-Pense à désactiver temporairement les appels à L01 si tu veux tester ce workflow seul.
+Pense à désactiver temporairement les appels à `L01 - Collect Ideas` si tu veux tester ce workflow seul.
 
 ## 📌 Astuces
 
-    Pour ajouter facilement de nouveaux flux, duplique un nœud RSS Feed Read existant.
+Pour ajouter facilement de nouveaux flux, duplique un nœud RSS Feed Read existant.
 
-    Tu peux combiner ce workflow avec un nœud n8n Schedule Trigger ou un service externe (Zapier, GitHub Action) pour une exécution plus fine.
+Tu peux combiner ce workflow avec un nœud n8n Schedule Trigger ou un service externe (Zapier, GitHub Action) pour une exécution plus fine.
 
-    🧩 Ce workflow fait partie de la collection Botopod n8n Workflows.
+🧩 Ce workflow fait partie de la collection Botopod n8n Workflows.

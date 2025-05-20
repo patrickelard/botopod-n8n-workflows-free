@@ -17,29 +17,26 @@ Ce dépôt regroupe les automatisations n8n développées par Botopod. Chaque wo
 
 ## 🚀 Installation
 
-1. Cloner ce dépôt :
+1. **Cloner ce dépôt** :
    ```bash
    git clone https://github.com/botopod/botopod-n8n-workflows-free.git
    cd botopod-n8n-workflows-free
-1. Importer les fichiers .json des workflows dans n8n :
+   ```
+2. **Importer les fichiers .json des workflows dans n8n** :
 
-    Via l'interface "Import workflow" (dans l'onglet Workflows)
+   - Via l'interface "Import workflow" (dans l'onglet Workflows)
+   - Ou en ligne de commande si tu utilises une instance auto-hébergée
 
-    Ou en ligne de commande si tu utilises une instance auto-hébergée
+3. **Adapter les variables d’environnement si nécessaire** :
 
-1. Adapter les variables d’environnement si nécessaire :
-
-    API Keys, URLs, secrets...
-
-    Voir les fichiers README.md dans chaque dossier de workflow
+   - API Keys, URLs, secrets...
+   - Voir les fichiers README.md dans chaque dossier de workflow
 
 ## 🔧 Prérequis
 
-    Instance n8n (self-hosted ou Cloud)
-
-    Connaissances de base sur les webhooks, APIs REST, flux RSS
-
-    (optionnel) Accès à une IA (OpenAI API, etc.)
+- Instance n8n (self-hosted ou Cloud)
+- Connaissances de base sur les webhooks, APIs REST, flux RSS
+- (optionnel) Accès à une IA (OpenAI API, etc.)
 
 ## 🧩 License
 
@@ -47,7 +44,7 @@ MIT — Utilisation libre, contributions bienvenues ✨
 
 ## 🤝 Contribuer
 
-Tu veux proposer une amélioration, corriger un bug ou ajouter un nouveau workflow ?
+Tu veux proposer une amélioration, corriger un bug ou ajouter un nouveau workflow ?  
 ➡️ Crée une issue ou envoie une pull request !
 
-    Fait avec ❤️ par Botopod — Automatise mieux, crée plus.
+Fait avec ❤️ par Botopod — Automatise mieux, crée plus.
